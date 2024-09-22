@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <title>BitBet Premier Presale</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-family: 'Montserrat';
+    }
+
+    :root {
+        --theme-color-neutralTheme-neutral00: #FFFF;
+        --theme-color-neutralTheme-neutral70: #5e5e5e;
+        --theme-color-neutralTheme-neutral80: #303030;
+        --theme-color-neutralTheme-neutral95: #1D1D1D;
+        --theme-color-neutralTheme-neutral98: #181818;
+
+        --theme-color-greenTheme-green40: #19b900;
+        --theme-color-greenTheme-green60: #138501;
+        --theme-color-greenTheme-green70: #0C5800;
+
+        --theme-color-orangeTheme-orange20: #ff9b21;
+        --theme-color-orangeTheme-orange50: #E67E03;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    body {
+        height: auto;
+        padding: 20px;
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        align-items: center;
+        background: url('home_banner_background.png');
+}
+
+    div.logo {
+        margin-top: 20px;
+        width: 200px;
+    }
+
+    div.logo img{
+        width: 100%;
+    }
+
+    div.progess-bar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        max-width: 400px;
+        min-height: 40px;
+        border-radius: 10px;
+        background-color: var(--theme-color-greenTheme-green70);
+    }
+
+    div.progess-bar p{
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        color: var(--theme-color-neutralTheme-neutral00);
+    }
+
+    div.progess-bar span.bar{
+        min-height: 40px;
+        width: 0%;
+        border-radius: 10px;
+        transition: all 0.6s ease;
+        background-color: var(--theme-color-orangeTheme-orange50);
+    }
+
+    form {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        gap: 10px;
+        border-radius: 20px;
+        background-color: var(--theme-color-greenTheme-green70);
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 8px;
+        width: 100%;
+        border-radius: 15px;
+        padding: 15px;
+        background-color: var(--theme-color-neutralTheme-neutral00);
+        cursor: text;
+    }
+
+    input {
+        width: 100%;
+        background: none;
+        border: none;
+        outline: none;
+        font-weight: normal;
+        font-size: 20px;
+        color: var(--theme-color-greenTheme-green40);
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    label span.wallet{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    label span.wallet i{
+        font-size: 20px;
+        color: var(--theme-color-greenTheme-green40);
+    }
+
+    label .wallet p{
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        color: var(--);
+    }
+
+    label div{
+        display: flex;
+        gap: 10px;
+    }
+
+    label div span.token{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: var(--theme-color-greenTheme-green70);
+        padding: 5px;
+        padding-right: 10px;
+        border-radius: 30px;
+    }
+
+    label div span.token img{
+        width: 30px;
+    }
+
+    label div span.token p{
+        font-weight: 500;
+        color: var(--theme-color-neutralTheme-neutral00);
+    }
+
+    span.arrow i{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: var(--theme-color-neutralTheme-neutral00);
+    }
+
+    button {
+        border: none;
+        margin-top: 20px;
+        padding: 15px;
+        width: 100%;
+        border-radius: 30px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all .3s ease;
+        color: var(--theme-color-neutralTheme-neutral00);
+        background-color: var(--theme-color-orangeTheme-orange50);
+    }
+
+    button:hover {
+        background-color: var(--theme-color-orangeTheme-orange20);
+    }
+
+    button:disabled {
+        cursor: not-allowed;
+    }
+
+    input:disabled {
+        cursor: not-allowed;
+    }
+
+    p.message {
+        color: red;
+        font-size: 14px;
+        display: none;
+    }.footer{
+        color: white;
+        
+        
+    }
+</style>
+<body>
+    <div class="logo">
+        <img src="logo.png" alt="BITBET">
+    </div>
+    <div class="progess-bar">
+        <span class="bar"></span>
+        <p>0%</p>
+    </div>
+    <form>    
+        <p class="message">Houve um error</p>    
+        <label>
+            <span class="wallet">
+                <p>0.0</p>
+                <i class="bi bi-wallet-fill"></i>
+            </span>
+            <div>
+                <input type="number" placeholder="0.0" id="usdt"/>
+                <span class="token">
+                    <img src="usdt.png" />
+                    <p>USDT</p>
+                </span>
+            </div>
+        </label>
+        <span class="arrow">
+            <i class="bi bi-arrow-down-circle-fill"></i>
+        </span>
+        <label>
+            <span class="wallet">
+                <p>0.0</p>
+                <i class="bi bi-wallet-fill"></i>
+            </span>
+            <div>
+                <input type="text" placeholder="0.0" id="bitbet" />
+                <span class="token">
+                    <img src="logo-icon.png" />
+                    <p>BITBET</p>
+                </span>
+            </div>
+        </label>
+        <button type="button" onclick="connectWallet()">Connect Wallet</button>
+    </form>
+    <footer class="footer">
+        <p>Developed <a href="https://t.me/Luizgyn" target="_blank" style="color: #E67E03">@Web3Devs</a> All rights reserved</p>
+    </footer>
+</body>
+    <script>
+        const CHAINID = '0x38';
+
+        const USDT_CONTRACT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
+        const BITBET_CONTRACT_ADDRESS = '0x23ac93dB9c305d2D2E9b27F0Dd955166992B0192';
+        const PRESALE_CONTRACT_ADDRESS = '0x778dcc39BD4bcBc4e0154D779f87D2F1C1233A9C';
+
+        const inputUSDT = document.querySelector('#usdt');
+        const inputBITBET = document.querySelector('#bitbet');
+
+        const wallets = document.querySelectorAll('.wallet p');
+        const button = document.querySelector('button');
+        const message = document.querySelector('.message');
+        const progress = document.querySelector('.progess-bar');
+
+        let balanceUSDT = '0', balanceToken = '0', isLoad = false;
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        const usdtAbi = [
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "balanceOf",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "spender",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "approve",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                    "internalType": "address",
+                    "name": "owner",
+                    "type": "address"
+                    },
+                    {
+                    "internalType": "address",
+                    "name": "spender",
+                    "type": "address"
+                    }
+                ],
+                "name": "allowance",
+                "outputs": [
+                    {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ];
+        const presaleAbi = [
+            {
+                "inputs": [],
+                "name": "contractBalanceTokens",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+             {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_usdtAmount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "buyTokens",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_token",
+                        "type": "address"
+                    }
+                ],
+                "name": "changeToken",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ];
+
+        const contractUSDT = new ethers.Contract(USDT_CONTRACT_ADDRESS, usdtAbi, provider);
+        const contractPresale = new ethers.Contract(PRESALE_CONTRACT_ADDRESS, presaleAbi, provider);
+
+        const precoTokenPorUSDT = ethers.utils.parseUnits('0.0017', 18);
+
+        inputUSDT.addEventListener('input', () => {
+            const targetValue = inputUSDT.value;            
+            if(targetValue === '') {
+                inputBITBET.value = '';
+                return;
+            }
+
+            if (inputBITBET.value >= 999999999) {
+                inputBITBET.value = '999999999';
+                return;
+            }
+            
+            if(+targetValue >= 999999999){
+                inputUSDT.value = '999999999'; 
+                return;
+            }
+
+            const usdtAmount = ethers.utils.parseUnits(targetValue, 18);
+            const tokens = usdtPerTokens(usdtAmount);
+
+            inputBITBET.value = ethers.utils.formatUnits(Math.round(tokens).toString(), 9);
+        });
+
+        inputBITBET.addEventListener('input', () => {
+            const targetValue = inputBITBET.value;
+            if (targetValue === '') {
+                inputUSDT.value = '';
+                return;
+            }
+
+            if (inputUSDT.value >= 999999999) {
+                inputUSDT.value = '999999999';
+                return;
+            }
+
+            if (+targetValue >= 999999999) {
+                inputBITBET.value = '999999999';
+                return;
+            }
+
+            const tokensAmount = ethers.utils.parseUnits(targetValue, 9);
+            const usdts = tokensPerUSDT(tokensAmount);
+
+            inputUSDT.value = ethers.utils.formatUnits(BigInt(usdts).toString(), 18);
+        });
+
+        const isConnected = async () => {
+            return await window.ethereum.isConnected();
+        }
+
+        const setLoad = (status) => {
+            if(status === true){
+                button.textContent = 'Waiting...';
+                button.disabled = true;
+                inputUSDT.disabled = true;
+                inputBITBET.disabled = true;
+            }else{
+                button.disabled = false;
+                inputUSDT.disabled = false;
+                inputBITBET.disabled = false;
+            }
+        }
+
+        const setError = (status, msg = '') => {
+            if (status === true) {
+                message.style.display = 'block';
+                message.textContent = msg;
+            } else {
+                message.style.display = 'none';
+            }
+        }
+
+        const setButton = (method, text) => {
+            button.textContent = text;
+            button.onclick = method;
+        }
+
+        const connectWallet = async () => {
+            setError(false);
+
+            try {
+                await provider.send("eth_requestAccounts", []);
+                await switchToChain(CHAINID);            
+                
+                if(await checkAllowance()){
+                    setButton(buyTokens, 'Transfer');
+                }else{
+                    setButton(approve, 'Allow the BitBet to use your USDT');
+                }
+
+                await getBalanceUSDT();
+            } catch (error) {
+                console.error('Error connecting wallet:', error);
+            }
+        }    
+
+        const switchToChain = async (chainId) => {
+            try {
+                await provider.send('wallet_switchEthereumChain', [{ chainId: chainId }]);
+            } catch (error) {
+                if (error.code === 4902) {
+                    try {
+                        await provider.send('wallet_addEthereumChain', [{
+                            chainId: chainId,
+                            chainName: 'Smart Chain',
+                            nativeCurrency: {
+                                name: 'BNB',
+                                symbol: 'bnb',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://bsc-dataseed.binance.org/'],
+                            blockExplorerUrls: ['https://bscscan.com/']
+                        }]);
+                    } catch (addError) {
+                        console.error('Erro ao adicionar a rede:', addError);
+                    }
+                } else {
+                    console.error('Erro ao trocar de rede:', error);
+                }
+            }
+        };
+
+        const checkAllowance = async (amount = 0) => {
+            const signer = provider.getSigner();
+
+            const accounts = await window.ethereum.request({ method: "eth_accounts" }); 
+            const contractUSDT = new ethers.Contract(USDT_CONTRACT_ADDRESS, usdtAbi, signer);
+
+            const allowanceAmount = await contractUSDT.allowance(accounts[0], PRESALE_CONTRACT_ADDRESS);
+
+            if(amount == 0){
+                return Math.round(allowanceAmount) > 0 ? true : false;
+            }else{
+                return Math.round(Number(amount)) <= Math.round(Number(allowanceAmount))   ? true : false;
+            }
+        }
+
+        const approve = async () => {
+            if (await !isConnected()) {
+                connectWallet();
+                setButton(connectWallet, 'Connect wallet')
+            }
+            setError(false);
+
+            if(inputUSDT.value === ''){ 
+                setError(true, 'Add a valid USDT amount');
+                return
+            };
+
+            try{
+                setLoad(true);
+                
+                const signer = provider.getSigner();
+                const contractUSDT = new ethers.Contract(USDT_CONTRACT_ADDRESS, usdtAbi, signer);
+
+                const amountToApprove =  ethers.utils.parseUnits(inputUSDT.value, 18)
+
+                const tx =  await contractUSDT.approve(
+                    PRESALE_CONTRACT_ADDRESS,
+                    amountToApprove
+                );
+
+                await tx.wait();
+
+                if (await checkAllowance()) {
+                    setButton(buyTokens, 'Transfer');
+                } else {
+                    setButton(approve, 'Allow the BitBet to use your USDT');
+                }
+
+                setLoad(false);
+            }catch (e) {
+                if (await checkAllowance()) {
+                    setButton(buyTokens, 'Transfer');
+                } else {
+                    setButton(approve, 'Allow the BitBet to use your USDT');
+                }
+                setLoad(false);
+                setError(true, 'There was an error in the transaction');
+            }
+        }
+
+        const buyTokens = async () => {
+            if(await !isConnected()){
+                connectWallet();
+                setButton(connectWallet, 'Connect wallet')
+            }     
+
+            setError(false);
+
+            if (inputUSDT.value === ''){
+                setError(true,'Add a valid USDT amount');
+                return;
+            }
+
+            setLoad(true);
+
+            const usdtAmount = ethers.utils.parseUnits(inputUSDT.value, 18)
+
+            if (await checkAllowance(usdtAmount) == false) {
+                setLoad(false);
+                setButton(approve, 'Allow the BitBet to use your USDT');
+                return;
+            }
+
+            try{               
+                const signer = provider.getSigner();
+                const contractPresale = new ethers.Contract(PRESALE_CONTRACT_ADDRESS, presaleAbi, signer);
+
+                const tx = await contractPresale.buyTokens(
+                    usdtAmount
+                ).catch((e) => {
+                    setError(true, 'There was an error in the transaction');
+                });
+
+                await tx.wait();                
+            }catch(e){
+                if (await checkAllowance(usdtAmount)) {
+                    setButton(buyTokens, 'Transfer');
+                } else {
+                    setButton(approve, 'Allow the BitBet to use your USDT');
+                }
+                setLoad(false);
+                setError('There was an error in the transaction', true);
+            }
+
+            if (await checkAllowance(usdtAmount)) {
+                setButton(buyTokens, 'Transfer');
+            } else {
+                setButton(approve, 'Allow the BitBet to use your USDT');
+            }
+
+            inputUSDT.value = '';
+            inputBITBET.value = '';
+
+            await getBalanceUSDT();
+            await getBalanceToken();
+            await reloadProgress();
+            setLoad(false);
+        }
+        
+        const getBalanceUSDT = async () => {
+            const accounts = await window.ethereum.request({ method: "eth_accounts" }); 
+            balanceUSDT = await contractUSDT.balanceOf(accounts[0]);
+            wallets[0].textContent = ethers.utils.formatUnits(balanceUSDT, 18);
+        }
+
+        const getBalanceToken = async () => {
+            balanceToken = await contractPresale.contractBalanceTokens();
+            wallets[1].textContent = ethers.utils.formatUnits(balanceToken, 9);
+            ethers.utils.formatUnits(balanceToken, 9);
+        }
+
+        const tokensPerUSDT = (tokenAmount) => {
+            return (tokenAmount * precoTokenPorUSDT) / (1e9);
+        }
+
+        const usdtPerTokens = (usdtAmount) => {
+            return (usdtAmount * (1e9)) / precoTokenPorUSDT;
+        }
+
+        const reloadProgress = async () => {
+            const tokenTotal = 172000000;
+            
+            const balanceToken = ethers.utils.formatUnits(await contractPresale.contractBalanceTokens(), 9);
+            const progressBar = (tokenTotal - balanceToken) / tokenTotal * 100;
+            progress.querySelector('span').style.width = progressBar + "%";
+
+            const roundedPercentage = parseFloat(progressBar).toFixed(2);
+            progress.querySelector('p').textContent = roundedPercentage + "%";
+        }
+
+        
+        window.onload = async () => {
+            if (await isConnected()) {
+                if (await checkAllowance()) {
+                    setButton(buyTokens, 'Transfer');
+                } else {
+                    setButton(approve, 'Allow the BitBet to use your USDT');
+                }
+                getBalanceUSDT();
+            }
+
+            getBalanceToken();
+            reloadProgress();
+        }
+
+        window.ethereum.on('chainChanged', (chainId) => {
+            window.location.reload();
+        });
+    </script>
+</html>
